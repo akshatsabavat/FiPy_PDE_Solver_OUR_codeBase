@@ -36,6 +36,17 @@ for step in range(steps): #loop to generates solution set of pde
     diffusionEquation.solve(var=phi, dt=timeStepDuration)
     viewer.plot()
 
+# Setting a larger timeStepDuration
+eqI = TransientTerm() == DiffusionTerm(coeff=D)
+newTimeStepDuration =  timeStepDuration * 10
+steps //= 10
+
+phi.setValue(val_Right)
+
+#from below plot solutions are less accurate
+for step in range(steps):
+    eqI.solve(var=phi, dt=newTimeStepDuration)
+    viewer.plot()
 
 
 
